@@ -1,7 +1,4 @@
 <script>
-    import Navbar from '$lib/navbar.svelte';
-    import Banner from '$lib/banner.svelte';
-
     let ingredientList = [];
 
     const addIngredient = () => {
