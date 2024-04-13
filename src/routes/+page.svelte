@@ -1,6 +1,4 @@
 <script>
-    import Header from "../lib/header.svelte";
-
     let ingredientList = [];
 
     const addIngredient = () => {
@@ -13,7 +11,6 @@
     }
 </script>
 
-<Header />
 <div class="index">
     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem amet, dolorem iusto iure accusantium quo numquam laboriosam ea illo perspiciatis laudantium culpa molestiae laborum labore a repudiandae, qui eaque harum.</p>
     <input type="text" placeholder="Enter ingredient" />
