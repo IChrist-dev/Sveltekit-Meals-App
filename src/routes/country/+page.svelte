@@ -1,27 +1,32 @@
 <script>
-    import Header from '$lib/header.svelte';
+    import Navbar from "$lib/navbar.svelte";
+    import Banner from "$lib/banner.svelte";
+
+    let areaUrl = 'www.themealdb.com/api/json/v1/1/filter.php?a=';
+
+    const performSearch = () => {
+        console.log('searching...');
+    };
+
 </script>
 
-<Header />
-<div class="bycountry">
-    <h2>Search Meal by Country</h2>
-    <form>
+<div class="by-country">
+    <h2>Search Meals by Country</h2>
 
-    </form>
-
+    <input type="text" placeholder="e.g. Canadian" />
+    <button on:click={performSearch}>Search</button>
+    <p></p>
 </div>
 
 <style>
-
     * {
-    margin: 0;
-    padding: 0;
+        margin: 0;
+        padding: 0;
     }
-    
-    .bycountry {
-    text-align: center;
-    display: block;
-    margin: 20px auto;
-}
 
+    .by-country {
+        text-align: center;
+        display: block;
+        margin: 20px auto;
+    }
 </style>
