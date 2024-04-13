@@ -1,5 +1,6 @@
 <script>
-    import Header from "../lib/header.svelte";
+    import Navbar from '$lib/navbar.svelte';
+    import Banner from '$lib/banner.svelte';
 
     let ingredientList = [];
 
@@ -13,7 +14,9 @@
     }
 </script>
 
-<Header />
+<Navbar />
+<Banner />
+
 <div class="index">
     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem amet, dolorem iusto iure accusantium quo numquam laboriosam ea illo perspiciatis laudantium culpa molestiae laborum labore a repudiandae, qui eaque harum.</p>
     <input type="text" placeholder="Enter ingredient" />
