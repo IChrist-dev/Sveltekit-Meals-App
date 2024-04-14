@@ -1,8 +1,8 @@
 <script>
     import Mealresult from "$lib/mealresult.svelte";
 
-    let areaUrl = "https://www.themealdb.com/api/json/v1/1/filter.php?a=";
-    let country = "";
+    let mealUrl = "https://www.themealdb.com/api/json/v1/1/filter.php?a=";
+    let mealSearch = "";
 
     let responseReport = "";
     let searchResults = [];
@@ -29,7 +29,7 @@
 
                 // Cleanup variables for next search
                 areaUrl = areaUrl.replace(country, "");
-                country = "";
+                mealSearch = "";
             })
             .catch(() => {
                 alert(
@@ -42,7 +42,7 @@
 <div class="by-country">
     <h2>Search Meals by Country</h2>
     <br />
-    <input bind:value={country} placeholder="e.g. Canadian" />
+    <input bind:value={mealSearch} placeholder="e.g. Canadian" />
     <button on:click={performSearch}>Search</button>
     <p>{@html responseReport}</p>
     <ul class="meals-list">
