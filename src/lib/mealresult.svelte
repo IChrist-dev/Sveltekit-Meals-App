@@ -9,14 +9,16 @@
     let detailImgSource = "";
     let detailInstructions = "";
     let detailYoutubeLink = "";
+    let detailIngredientsList = [];
 
     const hideDetails = () => {
+        detailYoutubeLink = "";
         document.getElementById(uniqueOverlayId).style.display = "none";
     };
 
     const showDetails = () => {
         document.getElementById(uniqueOverlayId).style.display = "block";
-        
+
         // Retrieve extra info from different endpoint
         let detailsUrl =
             "https://www.themealdb.com/api/json/v1/1/lookup.php?i=";
@@ -29,7 +31,25 @@
                 detailName = featureMeal.strMeal;
                 detailImgSource = featureMeal.strMealThumb;
                 detailInstructions = featureMeal.strInstructions;
-                detailYoutubeLink = featureMeal.strYoutube;
+                // Correct modify youtube url to be embed friendly
+                detailYoutubeLink = featureMeal.strYoutube.replace(
+                    "watch?v=",
+                    "embed/",
+                );
+
+                // Extract all ingredients from JSON. 1 - 20 are standard for all meal queries
+                const tempIngredientsList = [];
+                for (let i = 1; i <= 20; i++) {
+                    const ingredient = featureMeal[`strIngredient${i}`];
+                    if (ingredient) {
+                        tempIngredientsList.push(ingredient);
+                    } else {
+                        // Reached end of ingredients fields
+                        break;
+                    }
+                }
+
+                detailIngredientsList = tempIngredientsList;
             })
             .catch(() => {
                 alert(
@@ -46,7 +66,28 @@
         <div class="detail-text">
             <h1>{detailName}</h1>
             <p>{detailInstructions}</p>
-            <iframe title="Youtube Instructional Video" width="630" height="354" src={detailYoutubeLink} frameborder="0"></iframe>
+            <div class="lower-detail-box">
+                <div class="ingredients-box">
+                    <h2>Ingredients</h2>
+                    <ul class="ingredients-list">
+                        {#each detailIngredientsList as ingredient}
+                            <li>
+                                <p>{ingredient}</p>
+                            </li>
+                        {/each}
+                    </ul>
+                </div>
+                <iframe
+                    title="Youtube Instructional Video"
+                    src={detailYoutubeLink}
+                    width="300"
+                    height="240"
+                    frameborder="0"
+                    allow="enctrypted-media *"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen
+                ></iframe>
+            </div>
         </div>
     </div>
 </div>
@@ -94,6 +135,11 @@
         background-color: white;
     }
 
+    .detail-card img {
+        max-width: 30vw;
+        max-height: 30vw;
+    }
+
     .detail-text {
         max-width: 30vw;
     }
@@ -101,6 +147,20 @@
     .detail-text p {
         text-align: left;
         padding: 20px;
+        margin: 5px;
+    }
+
+    .lower-detail-box {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .ingredients-list {
+        list-style-type: circle;
+    }
+
+    .ingredients-list li p {
+        padding: 0;
     }
 
     .meal-card {
@@ -147,5 +207,19 @@
 
     #show-details-btn:active {
         background-color: lightgray;
+    }
+
+    @media (max-width: 1700px) {
+        .detail-card {
+            width: 80%;
+        }
+
+        .detail-card img {
+            width: 100%;
+        }
+
+        .detail-text {
+            max-width: 60%;
+        }
     }
 </style>

@@ -1,19 +1,20 @@
 <script>
     import Mealresult from "$lib/mealresult.svelte";
 
-    let areaUrl = "https://www.themealdb.com/api/json/v1/1/filter.php?a=";
-    let country = "";
+    let mealUrl = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
+    let mealSearch = "";
 
     let responseReport = "";
     let searchResults = [];
 
     const performSearch = () => {
-        // Update url endpoint with query value and clean whitespace
-        areaUrl = areaUrl.concat(country);
-        areaUrl = areaUrl.replace(" ", "_");
+        // Update url endpoint with query value
+        mealUrl = mealUrl.concat(mealSearch);
+        mealUrl = mealUrl.replace(" ", "_");
         searchResults = [];
 
-        fetch(areaUrl)
+        console.log(mealUrl)
+        fetch(mealUrl)
             .then((response) => response.json())
             .then((data) => {
                 // Provide feedback for bad searches
@@ -29,8 +30,8 @@
                 }
 
                 // Cleanup variables for next search
-                areaUrl = areaUrl.replace(country, "");
-                country = "";
+                mealUrl = mealUrl.replace(mealSearch, "");
+                mealSearch = "";
             })
             .catch(() => {
                 alert(
@@ -40,10 +41,10 @@
     };
 </script>
 
-<div class="by-country">
-    <h2>Search Meals by Country</h2>
+<div class="by-meal">
+    <h2>Searh by Meal Name</h2>
     <br />
-    <input bind:value={country} placeholder="e.g. Canadian" />
+    <input bind:value={mealSearch} placeholder="e.g. Canadian" />
     <button on:click={performSearch}>Search</button>
     <p>{@html responseReport}</p>
     <ul class="meals-list">
@@ -65,7 +66,7 @@
         padding: 0;
     }
 
-    .by-country {
+    .by-meal {
         text-align: center;
         display: block;
         margin: 20px auto;

@@ -10,6 +10,7 @@
 
 <main>
     <slot></slot>
+    <p>This line of text is defined in the top-level layout file. All pages will see this.</p>
 </main>
 
 <footer>
@@ -30,6 +31,10 @@
     main {
         max-width: 1000px;
         margin: 20px auto;
+    }
+
+    p {
+        text-align: center;
     }
 
     footer {
