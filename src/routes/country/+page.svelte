@@ -8,8 +8,9 @@
     let searchResults = [];
 
     const performSearch = () => {
-        // Update url endpoint with query value
+        // Update url endpoint with query value and clean whitespace
         areaUrl = areaUrl.concat(country);
+        areaUrl = areaUrl.replace(" ", "_");
         searchResults = [];
 
         fetch(areaUrl)

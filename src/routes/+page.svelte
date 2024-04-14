@@ -12,7 +12,8 @@
 </script>
 
 <div class="index">
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem amet, dolorem iusto iure accusantium quo numquam laboriosam ea illo perspiciatis laudantium culpa molestiae laborum labore a repudiandae, qui eaque harum.</p>
+    <p>Here is the homepage for this Svelte app. These two lines of text are defined in a component file at the top of the routing directory.</p>
+    <p>When going to another route, Svelte swaps this top-level component out for whatever component file is found in the targeted route sub-folder.</p>
 
 </div>
 

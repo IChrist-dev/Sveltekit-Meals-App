@@ -1,11 +1,9 @@
-<script>
-</script>
-
 <nav>
     <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/country">Country</a></li>
         <li><a href="/ingredient">Ingredient</a></li>
+        <li><a href="/meal">Meal</a></li>
     </ul>
 </nav>
 
@@ -18,14 +16,15 @@
     nav {
         display: flex;
         justify-content: center;
-        background-color: #ea3c12; /* Set the background color */
-        padding: 10px 0; /* Add padding for better spacing */
+        background-color: #ea3c12;
+        padding: 10px 0;
     }
 
     ul {
         list-style-type: none;
         display: flex;
         padding: 0;
+        margin: 0;
     }
 
     li {
