@@ -5,6 +5,7 @@
     <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/country">Country</a></li>
+        <li><a href="/ingredient">Ingredient</a></li>
     </ul>
 </nav>
 
