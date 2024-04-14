@@ -10,6 +10,7 @@
     const performSearch = () => {
         // Update url endpoint with query value
         areaUrl = areaUrl.concat(country);
+        searchResults = [];
 
         fetch(areaUrl)
             .then((response) => response.json())
@@ -17,14 +18,15 @@
                 // Provide feedback for bad searches
                 if (data["meals"] === null) {
                     responseReport =
-                        "Uh oh! Looks like we couldn't find anything for that search." +
+                        "<br>Uh oh! Looks like we couldn't find anything for that search." +
                         "<br><br>Please make sure you're using the derived adjective of the country." +
                         "<br>For example, to search for food from Canada, type 'Canadian'";
+                    searchResults = [];
                 } else {
                     responseReport = "";
-
-                    searchResults = data['meals'];
+                    searchResults = data["meals"];
                 }
+                country = "";
             })
             .catch(() => {
                 alert(
@@ -36,20 +38,20 @@
 
 <div class="by-country">
     <h2>Search Meals by Country</h2>
-    <br/>
+    <br />
     <input bind:value={country} placeholder="e.g. Canadian" />
     <button on:click={performSearch}>Search</button>
     <p>{@html responseReport}</p>
     <ul class="meals-list">
         {#each searchResults as meal}
-        <li>
-            <Mealresult
-            key={meal.idMeal}
-            mealName={meal.strMeal}
-            imgSource={meal.strMealThumb}
-        />
-        </li>
-    {/each}
+            <li>
+                <Mealresult
+                    mealId={meal.idMeal}
+                    mealName={meal.strMeal}
+                    imgSource={meal.strMealThumb}
+                />
+            </li>
+        {/each}
     </ul>
 </div>
 
